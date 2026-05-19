@@ -40,6 +40,8 @@
 *.sdf
 *.VC.db
 *.VC.opendb
+*.idea
+*.vsconfig
 
 # Precompiled Assets
 SourceArt/**/*.png
@@ -54,6 +56,9 @@ Plugins/UnrealClaude/*
 
 # Builds
 Build/*
+
+# Sabertooth files
+Content/Sabertooth/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
