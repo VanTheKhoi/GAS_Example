@@ -40,6 +40,26 @@ void AMyCharacter::BeginPlay()
 	}
 }
 
+void AMyCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	}
+}
+
+void AMyCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	}
+}
+
 // Called every frame
 void AMyCharacter::Tick(float DeltaTime)
 {
