@@ -2,6 +2,8 @@
 
 
 #include "MyCharacter.h"
+
+#include "AttributeSetBase.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -27,6 +29,9 @@ AMyCharacter::AMyCharacter()
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.f;
+	
+	// Add the attribute set 
+	AttributeSetBase = CreateDefaultSubobject<UAttributeSetBase>(TEXT("AttributeSetBase"));
 }
 
 // Called when the game starts or when spawned
