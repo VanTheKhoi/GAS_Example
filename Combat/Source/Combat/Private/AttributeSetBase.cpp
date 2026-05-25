@@ -8,9 +8,15 @@
 UAttributeSetBase::UAttributeSetBase()
 {
 	Stamina = 100.f;
+	MaxStamina = 100.f;
 }
 
 void UAttributeSetBase::OnRep_Stamina(const FGameplayAttributeData& OldStamina)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Stamina, OldStamina);
+}
+
+void UAttributeSetBase::OnRep_MaxStamina(const FGameplayAttributeData& OldStamina)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Stamina, OldStamina);
 }

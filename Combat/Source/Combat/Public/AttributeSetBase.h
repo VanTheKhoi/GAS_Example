@@ -18,6 +18,11 @@ class COMBAT_API UAttributeSetBase : public UAttributeSet
 public:
 	UAttributeSetBase();
 	
+	// Max Stamina attribute
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes", ReplicatedUsing = OnRep_MaxStamina)
+	FGameplayAttributeData MaxStamina;
+	ATTRIBUTE_ACCESSORS_BASIC(UAttributeSetBase, MaxStamina);
+	
 	// Stamina attributes
 	UPROPERTY(BlueprintReadOnly, Category = "Attributes", ReplicatedUsing = OnRep_Stamina)
 	FGameplayAttributeData Stamina;
@@ -26,6 +31,9 @@ public:
 
 	UFUNCTION()
 	virtual void OnRep_Stamina(const FGameplayAttributeData& OldStamina);
-
+	
+	UFUNCTION()
+	virtual void OnRep_MaxStamina(const FGameplayAttributeData& OldStamina);
+	
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };
