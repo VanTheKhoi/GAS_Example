@@ -16,6 +16,9 @@ class COMBAT_API AMyCharacter : public ACharacter, public IAbilitySystemInterfac
 public:
 	// Sets default values for this character's properties
 	AMyCharacter();
+	
+	UPROPERTY(EditAnywhere, blueprintReadWrite)
+	bool bIsAttacking;
 
 protected:
 	// Called when the game starts or when spawned
