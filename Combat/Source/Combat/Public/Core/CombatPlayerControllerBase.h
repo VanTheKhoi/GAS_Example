@@ -7,10 +7,20 @@
 #include "CombatPlayerControllerBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class COMBAT_API ACombatPlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
+	
+public:
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UUserWidget> MainUIClass;
+	
+	UPROPERTY()
+	UUserWidget* MainUIWidget;
+
+public:
+	virtual void BeginPlay() override;
 };
