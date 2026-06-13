@@ -6,7 +6,22 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "AbilitySystemComponent.h"
+#include "InputActionValue.h"
 #include "MyCharacter.generated.h"
+
+UENUM(BlueprintType)
+enum class EMyAbilityInputID : uint8
+{
+	None,
+	Confirm,
+	Cancel,
+	Dash,
+	Bite,
+	Shoot,
+};
+
+class UInputAction;
+class UInputMappingContext;
 
 UCLASS()
 class COMBAT_API AMyCharacter : public ACharacter, public IAbilitySystemInterface
@@ -23,6 +38,9 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	UPROPERTY()
+	TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent;
 	
 	virtual void PossessedBy(AController* NewController) override;
 	
@@ -42,5 +60,24 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	TObjectPtr<UInputMappingContext> CharacterMappingContext;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	TObjectPtr<UInputAction> IA_Dash;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	TObjectPtr<UInputAction> IA_Bite;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	TObjectPtr<UInputAction> IA_Shoot;
 
+private:
+// 	void Dash(const FInputActionValue& Value);
+	void Bite();
+// 	void Shoot(const FInputActionValue& Value);
+// 	
+// 	
+	
 };

@@ -5,6 +5,8 @@
 
 #include "AttributeSetBase.h"
 #include "Components/CapsuleComponent.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
@@ -45,6 +47,19 @@ void AMyCharacter::BeginPlay()
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	}
+	
+	// Add Input Mapping Context
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+			ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+		{
+			if (CharacterMappingContext)
+			{
+				Subsystem->AddMappingContext(CharacterMappingContext, 0);
+			}
+		}
+	}
 }
 
 void AMyCharacter::PossessedBy(AController* NewController)
@@ -78,10 +93,22 @@ void AMyCharacter::Tick(float DeltaTime)
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	
+	// Setup GAS enhanced input component by C++
+	// auto* EIC = Cast<UEnhancedInputComponent>(InputComponent);
+	// if (IA_Bite)
+	// {
+	// 	EIC->BindAction(IA_Bite, ETriggerEvent::Started, this, &AMyCharacter::Bite);
+	// }
 
 }
 
 UAbilitySystemComponent* AMyCharacter::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+void AMyCharacter::Bite()
+{
+	// AbilitySystemComponent->AbilityLocalInputPressed(static_cast<int32>(EMyAbilityInputID::Bite));
 }
