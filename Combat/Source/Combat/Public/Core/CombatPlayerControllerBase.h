@@ -4,11 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "InputActionValue.h"
 #include "CombatPlayerControllerBase.generated.h"
 
 /**
  *
  */
+
+class UInputAction;
+class UInputMappingContext;
+
 UCLASS()
 class COMBAT_API ACombatPlayerControllerBase : public APlayerController
 {
@@ -20,7 +25,17 @@ public:
 	
 	UPROPERTY()
 	UUserWidget* MainUIWidget;
+	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UInputMappingContext> UIMappingContext;
+	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UInputAction> ShowMainUIAction;
 
 public:
 	virtual void BeginPlay() override;
+	
+	virtual void SetupInputComponent() override;
+	
+	void ShowMainUI();
 };
