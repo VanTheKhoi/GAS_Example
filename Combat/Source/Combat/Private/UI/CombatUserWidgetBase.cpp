@@ -17,4 +17,11 @@ void UCombatUserWidgetBase::NativeConstruct()
 void UCombatUserWidgetBase::RemoveMainUI()
 {
 	RemoveFromParent();
+	// Hide mouse cursor and disable UI interaction
+	if (APlayerController* PC = GetOwningPlayer())
+	{
+		PC->bShowMouseCursor = false;
+		PC->bEnableClickEvents = false;
+		PC->bEnableMouseOverEvents = false;	
+	}
 }
