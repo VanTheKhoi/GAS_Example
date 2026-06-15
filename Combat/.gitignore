@@ -59,6 +59,7 @@ Build/*
 
 # Sabertooth files
 Content/Sabertooth/*
+Content/ParagonGreystone/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
