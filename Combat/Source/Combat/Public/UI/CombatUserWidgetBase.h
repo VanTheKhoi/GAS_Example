@@ -21,6 +21,10 @@ class COMBAT_API UCombatUserWidgetBase : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 	
+	virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
+	
+	virtual FReply NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent) override;
+	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> CloseUIButton;
 	

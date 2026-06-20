@@ -12,6 +12,23 @@ void UCombatUserWidgetBase::NativeConstruct()
 	{
 		CloseUIButton->OnClicked.AddDynamic(this, &UCombatUserWidgetBase::RemoveMainUI); // Callback
 	}
+	
+	// Set Focus
+	SetIsFocusable(true);
+	SetKeyboardFocus();
+}
+
+FReply UCombatUserWidgetBase::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
+{
+	// UE_LOG(LogTemp, Warning, TEXT("Key Pressed: %s"), *InKeyEvent.GetKey().ToString());
+	RemoveMainUI();
+	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);
+}
+
+FReply UCombatUserWidgetBase::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	RemoveMainUI();
+	return Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 }
 
 void UCombatUserWidgetBase::RemoveMainUI()
