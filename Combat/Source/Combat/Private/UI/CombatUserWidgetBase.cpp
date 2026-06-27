@@ -33,6 +33,10 @@ FReply UCombatUserWidgetBase::NativeOnMouseButtonDown(const FGeometry& InGeometr
 
 void UCombatUserWidgetBase::RemoveMainUI()
 {
+	OnExitButtonClick.Broadcast();
+	
+	UE_LOG(LogTemp, Log, TEXT("RemoveMainUI called in CombatUserWidgetBase"));
+	
 	RemoveFromParent();
 	// Hide mouse cursor and disable UI interaction
 	if (APlayerController* PC = GetOwningPlayer())

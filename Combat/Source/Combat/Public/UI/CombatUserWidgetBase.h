@@ -10,6 +10,8 @@
  * 
  */
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnExitButtonClicked);
+
 class UTextBlock;
 class UButton;
 
@@ -27,6 +29,9 @@ public:
 	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> CloseUIButton;
+	
+	UPROPERTY(BlueprintCallable, Category="Event")
+	FOnExitButtonClicked OnExitButtonClick;
 	
 private:
 	UFUNCTION()
