@@ -21,21 +21,33 @@ class COMBAT_API ACombatPlayerControllerBase : public APlayerController
 	
 public:
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
-	TSubclassOf<UUserWidget> MainUIClass;
+	TSubclassOf<UUserWidget> MainUI;
 	
 	UPROPERTY()
 	UUserWidget* MainUIWidget;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UUserWidget> PlayerHUD;
+	
+	UPROPERTY()
+	UUserWidget* PlayerHUDWidget;
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> UIMappingContext;
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> ShowMainUIAction;
+	
+	
 
 public:
 	virtual void BeginPlay() override;
 	
 	virtual void SetupInputComponent() override;
 	
+	UFUNCTION()
 	void ShowMainUI();
+	
+	UFUNCTION()
+	void ShowPlayerHUD();
 };

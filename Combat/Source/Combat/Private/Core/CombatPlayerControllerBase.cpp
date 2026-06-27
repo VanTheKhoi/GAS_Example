@@ -21,6 +21,15 @@ void ACombatPlayerControllerBase::BeginPlay()
 			Subsystem->AddMappingContext(UIMappingContext, 0);
 		}
 	}
+	
+	// Cast to CombatUserWidgetBase
+	if (MainUIWidget)
+	{
+		if (UCombatUserWidgetBase* CombatUserWidget = Cast<UCombatUserWidgetBase>(MainUIWidget))
+		{
+			CombatUserWidget->OnExitButtonClick.AddDynamic(this, &ACombatPlayerControllerBase::ShowPlayerHUD);
+		}
+	}
 }
 
 void ACombatPlayerControllerBase::SetupInputComponent()
@@ -43,7 +52,7 @@ void ACombatPlayerControllerBase::ShowMainUI()
 	// Check if the main ui widget is in viewport, if not create and add it
 	if (!MainUIWidget)
 	{
-		MainUIWidget = CreateWidget<UUserWidget>(this, MainUIClass);
+		MainUIWidget = CreateWidget<UUserWidget>(this, MainUI);
 	}
 	
 	if (!MainUIWidget->IsInViewport())
@@ -55,5 +64,21 @@ void ACombatPlayerControllerBase::ShowMainUI()
 		this->bEnableClickEvents = true;
 		this->bEnableMouseOverEvents = true;
 		
+	}
+}
+
+void ACombatPlayerControllerBase::ShowPlayerHUD()
+{
+	UE_LOG(LogTemp, Log, TEXT("Show Player HUD"));
+	
+	// Check if the main ui widget is in viewport, if not create and add it
+	if (!PlayerHUDWidget)
+	{
+		PlayerHUDWidget = CreateWidget<UUserWidget>(this, PlayerHUD);
+	}
+	
+	if (!PlayerHUDWidget->IsInViewport())
+	{
+		PlayerHUDWidget->AddToViewport();
 	}
 }
