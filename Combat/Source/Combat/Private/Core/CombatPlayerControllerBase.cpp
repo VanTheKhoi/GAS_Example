@@ -27,7 +27,7 @@ void ACombatPlayerControllerBase::BeginPlay()
 	{
 		if (UCombatUserWidgetBase* CombatUserWidget = Cast<UCombatUserWidgetBase>(MainUIWidget))
 		{
-			CombatUserWidget->OnExitButtonClick.AddDynamic(this, &ACombatPlayerControllerBase::ShowPlayerHUD);
+			CombatUserWidget->OnExitButtonClick.AddDynamic(this, &ACombatPlayerControllerBase::SpawnCombatManager);
 		}
 	}
 }
@@ -82,3 +82,19 @@ void ACombatPlayerControllerBase::ShowPlayerHUD()
 		PlayerHUDWidget->AddToViewport();
 	}
 }
+
+void ACombatPlayerControllerBase::SpawnCombatManager()
+{
+	// Spawn the CombatManager actor in the world
+	if (!CombatManagerActor) return;
+	
+	UWorld* World = GetWorld();
+	if (!World) return;
+	
+	FVector SpawnActorLocation = FVector::ZeroVector;
+	FRotator SpawnActorRotation = FRotator::ZeroRotator;
+	
+	AActor* SpawnedActor = World->SpawnActor<AActor>(CombatManagerActor, SpawnActorLocation, SpawnActorRotation);
+}
+
+

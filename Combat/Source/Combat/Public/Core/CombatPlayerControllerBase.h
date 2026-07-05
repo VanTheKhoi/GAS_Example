@@ -38,7 +38,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> ShowMainUIAction;
 	
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+	TSubclassOf<AActor> CombatManagerActor;
 
 public:
 	virtual void BeginPlay() override;
@@ -50,4 +51,7 @@ public:
 	
 	UFUNCTION()
 	void ShowPlayerHUD();
+	
+	UFUNCTION()
+	void SpawnCombatManager();
 };
