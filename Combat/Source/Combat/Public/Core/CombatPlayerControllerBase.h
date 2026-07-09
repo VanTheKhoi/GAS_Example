@@ -27,6 +27,12 @@ public:
 	UUserWidget* MainUIWidget;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UUserWidget> PauseUI;
+	
+	UPROPERTY()
+	UUserWidget* PauseUIWidget;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UUserWidget> PlayerHUD;
 	
 	UPROPERTY()

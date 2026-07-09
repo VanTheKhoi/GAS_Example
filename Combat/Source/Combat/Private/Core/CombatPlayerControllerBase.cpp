@@ -36,13 +36,13 @@ void ACombatPlayerControllerBase::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 	
-	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
-	{
-		if (ShowMainUIAction)
-		{
-			EnhancedInputComponent->BindAction(ShowMainUIAction, ETriggerEvent::Completed, this, &ACombatPlayerControllerBase::ShowMainUI);
-		}
-	}
+	// if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
+	// {
+	// 	if (ShowMainUIAction)
+	// 	{
+	// 		EnhancedInputComponent->BindAction(ShowMainUIAction, ETriggerEvent::Completed, this, &ACombatPlayerControllerBase::ShowMainUI);
+	// 	}
+	// }
 }
 
 void ACombatPlayerControllerBase::ShowMainUI()
